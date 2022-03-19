@@ -5,9 +5,13 @@ const useCategories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(async () => {
-    const { data } = await axios.get("/api/categories");
-    const { categories } = data;
-    setCategories(categories);
+    try {
+      const { data } = await axios.get("/api/categories");
+      const { categories } = data;
+      setCategories(categories);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
   return { categories, setCategories };
 };
