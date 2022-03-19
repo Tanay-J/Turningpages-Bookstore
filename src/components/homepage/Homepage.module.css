@@ -1,0 +1,75 @@
+@import url(/src/styles/utilities.css);
+
+.main_img_container {
+  position: relative;
+  overflow: hidden;
+}
+
+.main_img {
+  width: 100%;
+  max-height: 450px;
+}
+
+.main_img_text {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  color: var(--primary-dark);
+}
+
+.main_img_text_bottom {
+  position: absolute;
+  bottom: 10px;
+  left: 5%;
+}
+
+.featured_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.featured_container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  box-shadow: var(--shadow) 0px 3px 8px;
+}
+
+.card_img_s {
+  max-height: 10rem;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.category_card {
+  display: flex;
+  height: 15rem;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 0.2s;
+  background-color: var(text-white);
+  box-shadow: var(--shadow) 0px 3px 8px;
+}
+
+.category_card:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.category_card_img {
+  object-fit: cover;
+  max-height: 12rem;
+  width: 12rem;
+  filter: brightness(50%);
+}
+.text_overlay {
+  position: absolute;
+}
