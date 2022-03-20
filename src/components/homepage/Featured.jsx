@@ -12,7 +12,7 @@ const Featured = () => {
         {products.map((prod) => {
           return (
             prod.featured && (
-              <section className={`${styles.featured_container} text-left p-l`}>
+              <section className={`${styles.featured_container} text-left p-l`} key={prod._id}>
                 <img
                   className={`${styles.card_img_s} grid-row-span-2`}
                   src={prod.productImg}
