@@ -17,6 +17,13 @@
   color: var(--primary-dark);
 }
 
+.banner_title {
+  font-family: "Hurricane", cursive;
+}
+
+.banner_sub_title {
+  font-family: "Noto Serif Display", serif;
+}
 .main_img_text_bottom {
   position: absolute;
   bottom: 10px;

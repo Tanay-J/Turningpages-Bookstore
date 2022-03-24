@@ -9,9 +9,11 @@ const Banner = () => {
         src={process.env.PUBLIC_URL + "/assets/main-3.jpg"}
       />
       <div className={`${styles.main_img_text} text-left br-m`}>
-        <h2 className="h2 text-white">Turning Pages</h2>
-        <p className="text-white text-xs my-s">
-          is one stop shop for all your bibliophilic cravings
+        <h2 className={`${styles.banner_title} h1 text-white br-m`}>
+          Turning Pages
+        </h2>
+        <p className={`${styles.banner_sub_title} text-xs text-white my-s`}>
+          one stop shop for all your bibliophilic cravings
         </p>
         <Link className="link" to="/products">
           <button className="btn btn-primary my-m">Browse</button>
