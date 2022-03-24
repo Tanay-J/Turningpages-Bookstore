@@ -4,7 +4,7 @@ const ProductList = () => {
   const { finalProducts } = getFinalProducts();
   return (
     <main className="mx-auto p-s">
-      <div className="flex flex-wrap gap-2">
+      <div className="grid grid-col-3 gap-2">
         {finalProducts.length === 0 ? (
           <h3>No Products</h3>
         ) : (
@@ -24,7 +24,7 @@ const ProductList = () => {
             }) => {
               return (
                 <div
-                  className="card-vertical card-shadow position-rel br-m mx-auto"
+                  className="card-vertical card-shadow position-rel br-m"
                   key={_id}
                 >
                   {badge && (

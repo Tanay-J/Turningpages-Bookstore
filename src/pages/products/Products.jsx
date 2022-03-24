@@ -11,7 +11,7 @@ const Products = ({ category }) => {
     <>
       <Navbar />
       <Topbar />
-      <div class="wrapper main-container mx-auto my-m">
+      <div class="wrapper flex mx-auto my-m">
         <FilterAndSort />
         <ProductList category={category} />
       </div>
