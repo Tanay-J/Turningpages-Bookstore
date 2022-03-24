@@ -6,14 +6,14 @@ import {
   Topbar,
 } from "../../components";
 
-const Products = ({ category }) => {
+const Products = () => {
   return (
     <>
       <Navbar />
       <Topbar />
       <div class="wrapper flex mx-auto my-m">
         <FilterAndSort />
-        <ProductList category={category} />
+        <ProductList />
       </div>
 
       <Footer />
