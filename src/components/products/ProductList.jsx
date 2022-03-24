@@ -28,12 +28,12 @@ const ProductList = () => {
                   key={_id}
                 >
                   {badge && (
-                    <small class="card-badge font-bold my-s px-xs">
+                    <small className="card-badge font-bold my-s px-xs">
                       {badge}
                     </small>
                   )}
                   {!inStock && (
-                    <strong class="overlay-text alert secondary ">
+                    <strong className="overlay-text alert secondary ">
                       Out of Stock
                     </strong>
                   )}
