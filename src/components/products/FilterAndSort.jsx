@@ -110,7 +110,7 @@ const FilterAndSort = () => {
 
       <form className="flex flex-col my-xs">
         <h5 className="my-xs">Format</h5>
-        <label for="pb">
+        <label htmlFor="pb">
           <input
             type="checkbox"
             checked={filterState.binding.includes("Paperback")}
@@ -126,7 +126,7 @@ const FilterAndSort = () => {
           />
           <small>Paperback</small>
         </label>
-        <label for="hc">
+        <label htmlFor="hc">
           <input
             type="checkbox"
             checked={filterState.binding.includes("Hardcover")}
@@ -145,7 +145,7 @@ const FilterAndSort = () => {
       </form>
       <form className="flex flex-col my-xs">
         <h5 className="my-xs">Ratings</h5>
-        <label for="4plus">
+        <label htmlFor="4plus">
           <input
             type="radio"
             name="rating"
@@ -154,7 +154,7 @@ const FilterAndSort = () => {
           />
           <small>4 stars & above</small>
         </label>
-        <label for="3plus">
+        <label htmlFor="3plus">
           <input
             type="radio"
             name="rating"
@@ -163,7 +163,7 @@ const FilterAndSort = () => {
           />
           <small>3 stars & above</small>
         </label>
-        <label for="2plus">
+        <label htmlFor="2plus">
           <input
             type="radio"
             name="rating"
@@ -172,7 +172,7 @@ const FilterAndSort = () => {
           />
           <small>2 stars & above</small>
         </label>
-        <label for="1plus">
+        <label htmlhtmlFor="1plus">
           <input
             type="radio"
             name="rating"
