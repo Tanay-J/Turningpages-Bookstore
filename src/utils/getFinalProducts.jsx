@@ -11,22 +11,22 @@ const getFinalProducts = () => {
       state.categoryName.some((cat) => prod.categoryName.includes(cat))
     );
   };
-  
+
   const getSortedProducts = (state, products) => {
     switch (state.sorting) {
       case "lth":
         return products.sort(
           (a, b) =>
-            a.price -
-            (a.price * a.discount) / 100 -
-            (b.price - (b.price * b.discount) / 100)
+            Number(a.price) -
+            (Number(a.price) * Number(a.discount)) / 100 -
+            (Number(b.price) - (Number(b.price) * Number(b.discount)) / 100)
         );
       case "htl":
         return products.sort(
           (a, b) =>
-            b.price -
-            (b.price * b.discount) / 100 -
-            (a.price - (a.price * a.discount) / 100)
+            Number(b.price) -
+            (Number(b.price) * Number(b.discount)) / 100 -
+            (Number(a.price) - (Number(a.price) * Number(a.discount)) / 100)
         );
       default:
         return products;
@@ -43,7 +43,8 @@ const getFinalProducts = () => {
 
   const getProductsBelowMaxPrice = (state, products) =>
     products.filter(
-      (prod) => prod.price - (prod.price * prod.discount) / 100 < state.maxPrice
+      (prod) =>
+        Number(prod.price) - (Number(prod.price) * Number(prod.discount)) / 100 < Number(state.maxPrice)
     );
 
   const getBindingProducts = (state, products) =>
