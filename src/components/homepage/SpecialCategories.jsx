@@ -21,7 +21,6 @@ const SpecialCategories = () => {
                       type: "REMOVE_CATEGORIES",
                       payload: [],
                     });
-                    console.log("specialCat", category.categoryName);
                     filterDispatch({
                       type: "SET_CATEGORY",
                       payload: category.categoryName,
