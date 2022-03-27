@@ -7,7 +7,19 @@ const Topbar = () => {
       <Link to="/" className="link link-dark">
         Home
       </Link>
-      <Link to="/products" className="link link-dark">
+      <Link
+        to="/products"
+        className="link link-dark"
+        onClick={() => {
+          filterDispatch({ type: "REMOVE_CATEGORIES", payload: [] });
+          categories.map((cat) =>
+            filterDispatch({
+              type: "SET_CATEGORY",
+              payload: cat.categoryName,
+            })
+          );
+        }}
+      >
         All Products
       </Link>
       <Link to="" className="link link-dark">

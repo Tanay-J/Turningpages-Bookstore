@@ -1,9 +1,11 @@
 import styles from "./Homepage.module.css";
-import { useProducts } from "../../hooks";
 import { Link } from "react-router-dom";
+import { useFilter } from "../../contexts/filter-context";
+import { useProducts } from "../../hooks";
 
 const Featured = () => {
-  const { products } = useProducts({ });
+  const { products } = useProducts();
+  const { filterDispatch } = useFilter();
 
   return (
     <div className="wrapper mx-auto my-m">
@@ -12,7 +14,10 @@ const Featured = () => {
         {products.map((prod) => {
           return (
             prod.featured && (
-              <section className={`${styles.featured_container} text-left p-l`} key={prod._id}>
+              <section
+                className={`${styles.featured_container} text-left p-l`}
+                key={prod._id}
+              >
                 <img
                   className={`${styles.card_img_s} grid-row-span-2`}
                   src={prod.productImg}
@@ -25,11 +30,24 @@ const Featured = () => {
                 <div className="text-dark px-m">
                   <p className="text-xs font-xbold">{prod.title}</p>
                   <p>and other books by top authors</p>
-                  <button className="btn btn-outline my-s">
-                    <Link className="link link-dark" to={`/products/${prod.badge.replace(/ /g, "").toLowerCase()}`}>
+
+                  <Link to={`/products`}>
+                    <button
+                      className="btn btn-outline my-s"
+                      onClick={() => {
+                        filterDispatch({
+                          type: "REMOVE_CATEGORIES",
+                          payload: [],
+                        });
+                        filterDispatch({
+                          type: "SET_CATEGORY",
+                          payload: prod.badge,
+                        });
+                      }}
+                    >
                       Browse
-                    </Link>
-                  </button>
+                    </button>
+                  </Link>
                 </div>
               </section>
             )
