@@ -1,7 +1,12 @@
+import { Link } from "react-router-dom";
+import { useCart } from "../../contexts/cart-context";
+import { useWishlist } from "../../contexts/wishlist-context";
 import { getFinalProducts } from "../../utils/getFinalProducts";
 
 const ProductList = () => {
   const { finalProducts } = getFinalProducts();
+  const { cartState, cartDispatch } = useCart();
+  const { wishlistState, wishlistDispatch } = useWishlist();
   return (
     <main className="mx-auto p-s">
       <div className="grid grid-col-3 gap-2">
@@ -67,16 +72,88 @@ const ProductList = () => {
                     </div>
                   </div>
                   <div className="card-props flex p-s">
-                    <button className="btn btn-primary" disabled={!inStock}>
-                      Add to Cart
-                    </button>
+                    {cartState.cartItems.find((item) => item._id === _id) ? (
+                      <button className="btn btn-primary" disabled={!inStock}>
+                        <Link to="/cart" className="link link-white">
+                          Go to Cart
+                        </Link>
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-primary"
+                        disabled={!inStock}
+                        onClick={() => {
+                          cartDispatch({
+                            type: "ADD_TO_CART",
+                            payload: {
+                              _id,
+                              author,
+                              badge,
+                              binding,
+                              discount,
+                              inStock,
+                              lang,
+                              price,
+                              productImg,
+                              rating,
+                              title,
+                            },
+                          });
+                          wishlistDispatch({
+                            type: "REMOVE_FROM_WISHLIST",
+                            payload: _id,
+                          });
+                        }}
+                      >
+                        Add to Cart
+                      </button>
+                    )}
 
-                    <button
-                      className="btn btn-outline outline-primary mx-xs"
-                      disabled={!inStock}
-                    >
-                      Save for Later
-                    </button>
+                    {wishlistState.wishlistItems.find(
+                      (item) => item._id === _id
+                    ) ? (
+                      <button
+                        className="btn btn-outline outline-success mx-xs"
+                        disabled={!inStock}
+                        onClick={() =>
+                          wishlistDispatch({
+                            type: "REMOVE_FROM_WISHLIST",
+                            payload: _id,
+                          })
+                        }
+                      >
+                        Saved
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-outline outline-primary mx-xs"
+                        disabled={!inStock}
+                        onClick={() => {
+                          wishlistDispatch({
+                            type: "ADD_TO_WISHLIST",
+                            payload: {
+                              _id,
+                              author,
+                              badge,
+                              binding,
+                              discount,
+                              inStock,
+                              lang,
+                              price,
+                              productImg,
+                              rating,
+                              title,
+                            },
+                          });
+                          cartDispatch({
+                            type: "REMOVE_FROM_CART",
+                            payload: _id,
+                          });
+                        }}
+                      >
+                        Save for Later
+                      </button>
+                    )}
                   </div>
                 </div>
               );
