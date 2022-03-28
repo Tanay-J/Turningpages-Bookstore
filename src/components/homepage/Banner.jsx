@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import { useFilter } from "../../contexts/filter-context";
+import { useCategories } from "../../hooks";
 import styles from "./Homepage.module.css";
 
 const Banner = () => {
+  const { filterDispatch } = useFilter();
+  const { categories } = useCategories();
   return (
     <div className={`${styles.main_img_container} wrapper mx-auto my-m`}>
       <img
@@ -16,7 +20,20 @@ const Banner = () => {
           one stop shop for all your bibliophilic cravings
         </p>
         <Link className="link" to="/products">
-          <button className="btn btn-primary my-m">Browse</button>
+          <button
+            className="btn btn-primary my-m"
+            onClick={() => {
+              filterDispatch({ type: "REMOVE_CATEGORIES", payload: [] });
+              categories.map((cat) =>
+                filterDispatch({
+                  type: "SET_CATEGORY",
+                  payload: cat.categoryName,
+                })
+              );
+            }}
+          >
+            Browse
+          </button>
         </Link>
       </div>
       <p class={`${styles.main_img_text_bottom} text-black text-xxs`}>

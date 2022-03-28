@@ -47,7 +47,7 @@ const FilterAndSort = () => {
           (cat) =>
             (cat.categoryType === "genre" ||
               cat.categoryType === "special") && (
-              <label>
+              <label key={cat._id}>
                 <input
                   type="checkbox"
                   checked={filterState.categoryName.includes(cat.categoryName)}
@@ -172,7 +172,7 @@ const FilterAndSort = () => {
           />
           <small>2 stars & above</small>
         </label>
-        <label htmlhtmlFor="1plus">
+        <label htmlFor="1plus">
           <input
             type="radio"
             name="rating"
