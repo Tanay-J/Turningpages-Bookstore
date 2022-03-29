@@ -261,7 +261,7 @@ export const products = [
   {
     _id: uuid(),
     author: "Morgan Housel",
-    badge: "",
+    badge: "Just In",
     binding: "Paperback",
     categoryName: ["Self-Help", "Non-Fiction", "Just In"],
     description: "",

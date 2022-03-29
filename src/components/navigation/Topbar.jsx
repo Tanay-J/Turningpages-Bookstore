@@ -1,7 +1,11 @@
 import styles from "./Navigation.module.css";
 import { Link } from "react-router-dom";
+import { useFilter } from "../../contexts/filter-context";
+import { useCategories } from "../../hooks/useCategories";
 
 const Topbar = () => {
+  const { filterDispatch } = useFilter();
+  const { categories } = useCategories();
   return (
     <nav className={`${styles.topbar_container}`}>
       <Link to="/" className="link link-dark">

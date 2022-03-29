@@ -23,7 +23,7 @@ const FilterAndSort = () => {
             type="radio"
             name="sorting"
             checked={filterState.sorting === "lth"}
-            onClick={() =>
+            onChange={() =>
               filterDispatch({ type: "LOW_TO_HIGH", payload: "lth" })
             }
           />
@@ -34,7 +34,7 @@ const FilterAndSort = () => {
             type="radio"
             name="sorting"
             checked={filterState.sorting === "htl"}
-            onClick={() =>
+            onChange={() =>
               filterDispatch({ type: "HIGH_TO_LOW", payload: "htl" })
             }
           />
@@ -51,7 +51,7 @@ const FilterAndSort = () => {
                 <input
                   type="checkbox"
                   checked={filterState.categoryName.includes(cat.categoryName)}
-                  onClick={() =>
+                  onChange={() =>
                     filterDispatch({
                       type: "SET_CATEGORY",
                       payload: cat.categoryName,
@@ -84,7 +84,7 @@ const FilterAndSort = () => {
           <input
             type="checkbox"
             checked={filterState.includeOOS}
-            onClick={(e) =>
+            onChange={(e) =>
               filterDispatch({
                 type: "INCLUDE_OUT_OF_STOCK",
                 payload: e.target.checked,
@@ -97,7 +97,7 @@ const FilterAndSort = () => {
           <input
             type="checkbox"
             checked={filterState.fastDeliveryOnly}
-            onClick={(e) =>
+            onChange={(e) =>
               filterDispatch({
                 type: "FAST_DELIVERY_ONLY",
                 payload: e.target.checked,
@@ -115,7 +115,7 @@ const FilterAndSort = () => {
             type="checkbox"
             checked={filterState.binding.includes("Paperback")}
             id="pb"
-            onClick={(e) => {
+            onChange={(e) => {
               return e.target.checked
                 ? filterDispatch({ type: "SET_BINDING", payload: "Paperback" })
                 : filterDispatch({
@@ -131,7 +131,7 @@ const FilterAndSort = () => {
             type="checkbox"
             checked={filterState.binding.includes("Hardcover")}
             id="hc"
-            onClick={(e) => {
+            onChange={(e) => {
               return e.target.checked
                 ? filterDispatch({ type: "SET_BINDING", payload: "Hardcover" })
                 : filterDispatch({
@@ -150,7 +150,7 @@ const FilterAndSort = () => {
             type="radio"
             name="rating"
             id="4plus"
-            onClick={() => filterDispatch({ type: "SET_RATING", payload: 4 })}
+            onChange={() => filterDispatch({ type: "SET_RATING", payload: 4 })}
           />
           <small>4 stars & above</small>
         </label>
@@ -159,7 +159,7 @@ const FilterAndSort = () => {
             type="radio"
             name="rating"
             id="3plus"
-            onClick={() => filterDispatch({ type: "SET_RATING", payload: 3 })}
+            onChange={() => filterDispatch({ type: "SET_RATING", payload: 3 })}
           />
           <small>3 stars & above</small>
         </label>
@@ -168,7 +168,7 @@ const FilterAndSort = () => {
             type="radio"
             name="rating"
             id="2plus"
-            onClick={() => filterDispatch({ type: "SET_RATING", payload: 2 })}
+            onChange={() => filterDispatch({ type: "SET_RATING", payload: 2 })}
           />
           <small>2 stars & above</small>
         </label>
@@ -177,7 +177,7 @@ const FilterAndSort = () => {
             type="radio"
             name="rating"
             id="1plus"
-            onClick={() => filterDispatch({ type: "SET_RATING", payload: 1 })}
+            onChange={() => filterDispatch({ type: "SET_RATING", payload: 1 })}
           />
           <small>1 star & above</small>
         </label>
