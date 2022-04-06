@@ -51,7 +51,7 @@ const BillDetails = () => {
           placeholder="APPLY COUPON"
         />
 
-        <button className="btn btn-primary flex-grow-1 my-m py-l">
+        <button className="btn btn-primary my-m py-l">
           PLACE ORDER
         </button>
       </aside>
