@@ -1,3 +1,10 @@
 .aside_container {
   max-width: 20rem;
 }
+.card_vertical {
+  height: 27rem;
+}
+.card_details {
+  position: absolute;
+  bottom: 0;
+}
