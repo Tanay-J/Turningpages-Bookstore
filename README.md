@@ -8,9 +8,10 @@ Turning Pages Bookstore is one stop shop for all your literary needs. Choose fro
 https://turningpages.vercel.app
 
 ### Main Features
+
+- Open source webapp with clean design for great UX
 - Made with ReactJS using [ink UI](http://inkui.netlify.app)
 - Uses [mockBee](http:/mockbee.netlify.app) mock backend
-- Open source webapp with clean design for great UX
 
 ### Pages and Functionalities
 - Homepage
