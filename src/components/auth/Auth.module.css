@@ -1,1 +1,11 @@
-/* auth module */
+.auth_container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 30rem;
+  background-color: blanchedalmond;
+}
+
+.auth_input {
+  border: 1px solid var(--gray-light);
+}

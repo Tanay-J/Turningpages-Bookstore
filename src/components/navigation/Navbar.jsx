@@ -2,11 +2,13 @@ import styles from "./Navigation.module.css";
 import { Link } from "react-router-dom";
 import { useWishlist } from "../../contexts/wishlist-context";
 import { getBillingDetails } from "../../utils/getBillingDetails";
+import { useAuth } from "../../contexts/auth-context";
 
 const Navbar = () => {
   const { wishlistState } = useWishlist();
   const { wishlistItems } = wishlistState;
   const { totalQty } = getBillingDetails();
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
 
   return (
     <header className={`${styles.nav_header} nav-bg-transparent px-xl py-xs`}>
@@ -23,14 +25,21 @@ const Navbar = () => {
         <ul className={`${styles.nav_links}`}>
           <li className="px-s">
             <Link to="/login">
-              <button className="btn btn-outline outline-primary">Login</button>
+              <button
+                className="btn btn-outline outline-primary"
+                onClick={() => setIsLoggedIn(!isLoggedIn)}
+              >
+                {isLoggedIn ? "Log Out" : "Log In"}
+              </button>
             </Link>
           </li>
-          <li className="px-s">
-            <Link to="/signup">
-              <button className="btn btn-primary">Sign Up</button>
-            </Link>
-          </li>
+          {!isLoggedIn && (
+            <li className="px-s">
+              <Link to="/signup">
+                <button className="btn btn-primary">Sign Up</button>
+              </Link>
+            </li>
+          )}
           <li className="px-s">
             <Link to="/cart">
               <div className="badge-container">
