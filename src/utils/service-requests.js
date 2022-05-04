@@ -1,9 +1,9 @@
 import axios from "axios";
 import { getLocalStorageData } from "./getLocalStorageData";
 
-const { token, userData } = getLocalStorageData();
 //Cart
 export const getCart = async (cartDispatch) => {
+  const { token } = getLocalStorageData();
   const response = await axios.get("/api/user/cart", {
     headers: { authorization: token },
   });
@@ -13,6 +13,7 @@ export const getCart = async (cartDispatch) => {
 };
 
 export const addToCart = async (product, cartDispatch, wishlistDispatch) => {
+  const { token } = getLocalStorageData();
   const response = await axios.post(
     "/api/user/cart",
     { product: product },
@@ -25,6 +26,7 @@ export const addToCart = async (product, cartDispatch, wishlistDispatch) => {
 };
 
 export const changeQty = async (id, actionType, cartDispatch) => {
+  const { token } = getLocalStorageData();
   try {
     const response = await axios.post(
       `/api/user/cart/${id}`,
@@ -42,6 +44,7 @@ export const changeQty = async (id, actionType, cartDispatch) => {
 };
 
 export const removeFromCart = async (id, cartDispatch) => {
+  const { token } = getLocalStorageData();
   try {
     const response = await axios.delete(`/api/user/cart/${id}`, {
       headers: { authorization: token },
@@ -56,6 +59,7 @@ export const removeFromCart = async (id, cartDispatch) => {
 
 //Wishlist
 export const getWishlist = async (wishlistDispatch) => {
+  const { token } = getLocalStorageData();
   try {
     const response = await axios.get("/api/user/wishlist", {
       headers: { authorization: token },
@@ -75,6 +79,7 @@ export const addToWishlist = async (
   wishlistDispatch,
   cartDispatch
 ) => {
+  const { token } = getLocalStorageData();
   try {
     const response = await axios.post(
       "/api/user/wishlist",
@@ -94,6 +99,7 @@ export const addToWishlist = async (
 };
 
 export const removeFromWishlist = async (id, wishlistDispatch) => {
+  const { token } = getLocalStorageData();
   try {
     const response = await axios.delete(`/api/user/wishlist/${id}`, {
       headers: { authorization: token },
