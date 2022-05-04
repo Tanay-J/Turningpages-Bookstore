@@ -11,7 +11,7 @@ const Products = () => {
     <>
       <Navbar />
       <Topbar />
-      <div class="wrapper flex mx-auto my-m">
+      <div className="wrapper flex mx-auto my-m">
         <FilterAndSort />
         <ProductList />
       </div>

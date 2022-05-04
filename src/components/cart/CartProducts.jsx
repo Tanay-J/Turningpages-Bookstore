@@ -1,13 +1,20 @@
 import styles from "./Cart.module.css";
 import { useCart } from "../../contexts/cart-context";
 import { useWishlist } from "../../contexts/wishlist-context";
+import { getBillingDetails } from "../../utils/getBillingDetails";
+import {
+  addToWishlist,
+  changeQty,
+  removeFromCart,
+} from "../../utils/service-requests";
 
 const CartProducts = () => {
-  const { cartState, cartDispatch } = useCart();
-  const { cartItems } = cartState;
+  const {
+    cartState: { cartItems },
+    cartDispatch,
+  } = useCart();
   const { wishlistDispatch } = useWishlist();
-
-  const totalQty = cartItems.reduce((acc, curr) => curr.qty + acc, 0);
+  const { totalQty } = getBillingDetails();
 
   return (
     <main className="flex flex-col gap-2 mx-auto">
@@ -42,18 +49,14 @@ const CartProducts = () => {
                 <button
                   disabled={item.qty == 1 ? true : false}
                   className={`${styles.minus}`}
-                  onClick={() =>
-                    cartDispatch({ type: "DECREASE_QTY", payload: item._id })
-                  }
+                  onClick={() => changeQty(item._id, "decrement", cartDispatch)}
                 >
                   <i className="fas fa-minus text-xxs px-xs"></i>
                 </button>
                 <span className={`${styles.qty} p-xs`}>{item.qty}</span>
                 <button
                   className={`${styles.plus}`}
-                  onClick={() =>
-                    cartDispatch({ type: "INCREASE_QTY", payload: item._id })
-                  }
+                  onClick={() => changeQty(item._id, "increment", cartDispatch)}
                 >
                   <i className="fas fa-plus text-xxs px-xs"></i>
                 </button>
@@ -62,26 +65,15 @@ const CartProducts = () => {
                 <small
                   className="link"
                   onClick={() => {
-                    wishlistDispatch({
-                      type: "ADD_TO_WISHLIST",
-                      payload: item,
-                    });
-                    cartDispatch({
-                      type: "REMOVE_FROM_CART",
-                      payload: item._id,
-                    });
+                    addToWishlist(item, wishlistDispatch);
+                    removeFromCart(item._id, cartDispatch);
                   }}
                 >
                   ADD TO WISHLIST
                 </small>
                 <small
                   className="link text-gray"
-                  onClick={() =>
-                    cartDispatch({
-                      type: "REMOVE_FROM_CART",
-                      payload: item._id,
-                    })
-                  }
+                  onClick={() => removeFromCart(item._id, cartDispatch)}
                 >
                   REMOVE
                 </small>

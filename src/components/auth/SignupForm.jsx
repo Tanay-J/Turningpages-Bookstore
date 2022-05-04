@@ -1,21 +1,37 @@
 import styles from "./Auth.module.css";
-import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { signUpHandler } from "../../utils/service-requests";
 
 const SignupForm = () => {
-  const signUp = async () => {
-    try {
-      const res = await axios.post("/api/auth/signup", {
-        firstName: "Adarsh",
-        lastName: "Balika",
-        email: "adarshbalika21@neog.camp",
-        password: "adarshBalika",
-      });
-
-      console.log("res", res);
-    } catch (e) {
-      console.log("error", e);
-    }
+  const initialData = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confPassword: "",
   };
+  const [signUpData, setSignUpData] = useState(initialData);
+  const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
+  const userInputHandler = (e) => {
+    const { id, value } = e.target;
+    setSignUpData({ ...signUpData, [id]: value });
+  };
+
+  const dataValidation = (e) => {
+    e.preventDefault();
+    const { firstName, lastName, email, password, confPassword } = signUpData;
+    if (firstName && lastName && email && password) {
+      if (password !== confPassword) {
+        setErrorMsg("Password does not match");
+      } else {
+        setErrorMsg("");
+        signUpHandler(signUpData, navigate, setErrorMsg);
+      }
+    } else setErrorMsg("All fields are mandatory");
+  };
+
   return (
     <>
       <div className="wrapper mx-auto my-m">
@@ -26,57 +42,65 @@ const SignupForm = () => {
           <form className="mx-auto p-s">
             <div className="flex gap-1 flex-wrap">
               <div className="flex flex-col">
-                <label className="my-xs" for="firstname">
+                <label className="my-xs" htmlFor="firstName">
                   <small>First Name</small>
                   <span className="text-danger"> *</span>
                 </label>
                 <input
-                  id="firstname"
+                  id="firstName"
+                  value={signUpData.firstName}
                   className={`${styles.auth_input} p-xs br-s`}
+                  onChange={userInputHandler}
                   required
                   placeholder="First Name"
                 />
               </div>
               <div className="flex flex-col">
-                <label className="my-xs" for="lastname">
+                <label className="my-xs" htmlFor="lastName">
                   <small>Last Name</small>
                   <span className="text-danger"> *</span>
                 </label>
                 <input
-                  id="lastname"
+                  id="lastName"
+                  value={signUpData.lastName}
                   className={`${styles.auth_input} p-xs br-s`}
+                  onChange={userInputHandler}
                   required
                   placeholder="Last Name"
                 />
               </div>
             </div>
             <div className="flex flex-col">
-              <label className="my-xs" for="username">
+              <label className="my-xs" htmlFor="email">
                 <small>Username</small>
                 <span className="text-danger"> *</span>
               </label>
               <input
-                id="username"
+                id="email"
+                value={signUpData.email}
                 className={`${styles.auth_input} p-xs br-s`}
+                onChange={userInputHandler}
                 required
-                placeholder="Username"
+                placeholder="email"
               />
             </div>
             <div className="flex flex-col">
-              <label className="required my-xs" for="password">
+              <label className="required my-xs" htmlFor="password">
                 <small>Password </small>
                 <span className="text-danger"> *</span>
               </label>
               <input
                 id="password"
+                value={signUpData.password}
                 className={`${styles.auth_input} p-xs br-s`}
+                onChange={userInputHandler}
                 type="password"
                 required
                 placeholder="**********"
               />
             </div>
             <div className="flex flex-col">
-              <label className="required my-xs" for="confPassword">
+              <label className="required my-xs" htmlFor="confPassword">
                 <small>Confirm Password </small>
                 <span className="text-danger"> *</span>
               </label>
@@ -84,24 +108,16 @@ const SignupForm = () => {
                 id="confPassword"
                 className={`${styles.auth_input} p-xs br-s`}
                 type="password"
+                onChange={userInputHandler}
                 required
                 placeholder="**********"
               />
             </div>
-            <div className="flex justify-content-space-bet gap-2 my-xs">
-              <div>
-                <input type="checkbox" />
-                <small>
-                  I accept all{" "}
-                  <a className="link link-dark font-bold" href="">
-                    {" "}
-                    Terms and Conditions
-                  </a>
-                </small>
-              </div>
-            </div>
+            {errorMsg && <p className="text-danger text-center">{errorMsg}</p>}
             <div className="flex flex-col">
-              <button className="btn btn-primary my-m">Sign Up</button>
+              <button className="btn btn-primary my-m" onClick={dataValidation}>
+                Sign Up
+              </button>
             </div>
           </form>
         </main>
