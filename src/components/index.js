@@ -11,3 +11,4 @@ export { SignupForm } from "./auth/SignupForm";
 export { SpecialCategories } from "./homepage/SpecialCategories";
 export { Topbar } from "./navigation/Topbar";
 export { WishlistProducts } from "./wishlist/WishlistProducts";
+export { MockAPI } from "./MockAPI/MockAPI";

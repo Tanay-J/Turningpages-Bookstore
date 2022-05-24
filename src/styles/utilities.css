@@ -11,6 +11,9 @@ ul {
 }
 
 /* Links */
+.link {
+  border-bottom: 1px solid transparent;
+}
 .btn .link:hover {
   border: none;
 }
@@ -134,4 +137,16 @@ ul {
 .main-container {
   display: grid;
   grid-template-columns: auto auto;
+}
+.alert {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  width: fit-content;
+  transition-timing-function: ease-in;
+  transition: 0.8s;
+}
+
+.pointer {
+  cursor: pointer;
 }

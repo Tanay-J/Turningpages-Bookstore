@@ -1,13 +1,34 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/auth-context";
 import { useCart } from "../../contexts/cart-context";
 import { useWishlist } from "../../contexts/wishlist-context";
 import { getFinalProducts } from "../../utils/getFinalProducts";
+import {
+  addToCart,
+  addToWishlist,
+  removeFromWishlist,
+} from "../../utils/service-requests";
 import styles from "./Products.module.css";
 
 const ProductList = () => {
   const { finalProducts } = getFinalProducts();
-  const { cartState, cartDispatch } = useCart();
-  const { wishlistState, wishlistDispatch } = useWishlist();
+
+  const {
+    state: { isAuthenticated },
+  } = useAuth();
+
+  const {
+    cartState: { cartItems },
+    cartDispatch,
+  } = useCart();
+
+  const {
+    wishlistState: { wishlistItems },
+    wishlistDispatch,
+  } = useWishlist();
+
+  const navigate = useNavigate();
+
   return (
     <main className="mx-auto p-s">
       <div className="grid grid-col-3 gap-2">
@@ -74,7 +95,7 @@ const ProductList = () => {
                       </div>
                     </div>
                     <div className="card-props flex p-s">
-                      {cartState.cartItems.find((item) => item._id === _id) ? (
+                      {cartItems.find((item) => item._id === _id) ? (
                         <button className="btn btn-primary" disabled={!inStock}>
                           <Link to="/cart" className="link link-white">
                             Go to Cart
@@ -85,43 +106,37 @@ const ProductList = () => {
                           className="btn btn-primary"
                           disabled={!inStock}
                           onClick={() => {
-                            cartDispatch({
-                              type: "ADD_TO_CART",
-                              payload: {
-                                _id,
-                                author,
-                                badge,
-                                binding,
-                                discount,
-                                inStock,
-                                lang,
-                                price,
-                                productImg,
-                                rating,
-                                title,
-                              },
-                            });
-                            wishlistDispatch({
-                              type: "REMOVE_FROM_WISHLIST",
-                              payload: _id,
-                            });
+                            isAuthenticated
+                              ? addToCart(
+                                  {
+                                    _id,
+                                    author,
+                                    badge,
+                                    binding,
+                                    discount,
+                                    inStock,
+                                    lang,
+                                    price,
+                                    productImg,
+                                    rating,
+                                    title,
+                                  },
+                                  cartDispatch,
+                                  wishlistDispatch
+                                )
+                              : navigate("/login");
                           }}
                         >
                           Add to Cart
                         </button>
                       )}
 
-                      {wishlistState.wishlistItems.find(
-                        (item) => item._id === _id
-                      ) ? (
+                      {wishlistItems.find((item) => item._id === _id) ? (
                         <button
                           className="btn btn-outline outline-success mx-xs"
                           disabled={!inStock}
                           onClick={() =>
-                            wishlistDispatch({
-                              type: "REMOVE_FROM_WISHLIST",
-                              payload: _id,
-                            })
+                            removeFromWishlist(_id, wishlistDispatch)
                           }
                         >
                           Saved
@@ -131,26 +146,25 @@ const ProductList = () => {
                           className="btn btn-outline outline-primary mx-xs"
                           disabled={!inStock}
                           onClick={() => {
-                            wishlistDispatch({
-                              type: "ADD_TO_WISHLIST",
-                              payload: {
-                                _id,
-                                author,
-                                badge,
-                                binding,
-                                discount,
-                                inStock,
-                                lang,
-                                price,
-                                productImg,
-                                rating,
-                                title,
-                              },
-                            });
-                            cartDispatch({
-                              type: "REMOVE_FROM_CART",
-                              payload: _id,
-                            });
+                            isAuthenticated
+                              ? addToWishlist(
+                                  {
+                                    _id,
+                                    author,
+                                    badge,
+                                    binding,
+                                    discount,
+                                    inStock,
+                                    lang,
+                                    price,
+                                    productImg,
+                                    rating,
+                                    title,
+                                  },
+                                  wishlistDispatch,
+                                  cartDispatch
+                                )
+                              : navigate("/login");
                           }}
                         >
                           Save for Later
