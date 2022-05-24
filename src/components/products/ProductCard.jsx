@@ -86,23 +86,7 @@ const ProductCard = ({ product }) => {
               disabled={!inStock}
               onClick={() => {
                 isAuthenticated
-                  ? addToCart(
-                      {
-                        _id,
-                        author,
-                        badge,
-                        binding,
-                        discount,
-                        inStock,
-                        lang,
-                        price,
-                        productImg,
-                        rating,
-                        title,
-                      },
-                      cartDispatch,
-                      wishlistDispatch
-                    )
+                  ? addToCart(product, cartDispatch, wishlistDispatch)
                   : navigate("/login");
               }}
             >
@@ -124,23 +108,7 @@ const ProductCard = ({ product }) => {
               disabled={!inStock}
               onClick={() => {
                 isAuthenticated
-                  ? addToWishlist(
-                      {
-                        _id,
-                        author,
-                        badge,
-                        binding,
-                        discount,
-                        inStock,
-                        lang,
-                        price,
-                        productImg,
-                        rating,
-                        title,
-                      },
-                      wishlistDispatch,
-                      cartDispatch
-                    )
+                  ? addToWishlist(product, wishlistDispatch, cartDispatch)
                   : navigate("/login");
               }}
             >
