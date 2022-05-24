@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../../contexts/cart-context";
 import { useWishlist } from "../../contexts/wishlist-context";
 import { addToCart, removeFromWishlist } from "../../utils/service-requests";
