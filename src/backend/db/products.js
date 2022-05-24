@@ -199,11 +199,11 @@ export const products = [
   {
     _id: uuid(),
     author: "Walter Isaacson",
-    badge:
-      "Walter Isaacson's 'enthralling' (The New Yorker) worldwide bestselling biography of Apple cofounder Steve Jobs. Based on more than forty interviews with Steve Jobs conducted over two years--as well as interviews with more than 100 family members, friends, adversaries, competitors, and colleagues",
+    badge: "",
     binding: "Hardcover",
     categoryName: ["Non-Fiction"],
-    description: "",
+    description:
+      "Walter Isaacson's 'enthralling' (The New Yorker) worldwide bestselling biography of Apple cofounder Steve Jobs. Based on more than forty interviews with Steve Jobs conducted over two years--as well as interviews with more than 100 family members, friends, adversaries, competitors, and colleagues",
     discount: Math.floor(Math.random() * 21) + 5,
     fastDelivery: false,
     featured: false,
