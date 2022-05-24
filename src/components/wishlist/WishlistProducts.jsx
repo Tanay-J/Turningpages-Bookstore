@@ -21,7 +21,9 @@ const WishlistProducts = () => {
             key={item._id}
           >
             <div className="grid-row-span-2 card-img">
-              <img src={item.productImg} alt="product image" />
+              <Link to={`/products/${item._id}`} state={{ product: item }}>
+                <img src={item.productImg} alt="product image" />
+              </Link>
             </div>
             <div className="mx-m">
               <div className="card-details">
