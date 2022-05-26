@@ -35,10 +35,12 @@ const ProductDetails = ({ product }) => {
         <span
           className={`${
             rating < 3.5 ? "bg-primary" : "bg-success"
-          } px-xs br-s my-xs`}
+          } text-white px-xs br-s my-xs`}
         >
           {rating}
+          <span className="text-xs">★</span>
         </span>
+
         <small className="text-gray mx-xs">{reviews} reviews</small>
       </div>
       <div className="my-xs">
