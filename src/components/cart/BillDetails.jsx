@@ -1,6 +1,7 @@
 import styles from "./Cart.module.css";
 import { getBillingDetails } from "../../utils/getBillingDetails";
 import { useCart } from "../../contexts/cart-context";
+import { Link } from "react-router-dom";
 
 const BillDetails = () => {
   const { cartState } = useCart();
@@ -46,14 +47,11 @@ const BillDetails = () => {
           </div>
         </section>
 
-        <input
-          className={`${styles.coupon_input} p-xs my-xs`}
-          placeholder="APPLY COUPON"
-        />
-
-        <button className="btn btn-primary my-m py-l">
-          PLACE ORDER
-        </button>
+        <Link to="/checkout">
+          <button className="btn btn-primary my-m py-l width-100">
+            Checkout
+          </button>
+        </Link>
       </aside>
     )
   );
