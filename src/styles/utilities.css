@@ -111,7 +111,16 @@ ul {
 .text-left {
   text-align: left;
 }
-
+/* background */
+.bg-primary {
+  background-color: var(--primary-light);
+}
+.bg-success {
+  background-color: var(--success);
+}
+.bg-danger {
+  background-color: var(--danger);
+}
 /* Buttons */
 .btn {
   cursor: pointer;
@@ -139,12 +148,9 @@ ul {
   grid-template-columns: auto auto;
 }
 .alert {
-  position: fixed;
-  bottom: 5%;
-  right: 5%;
-  width: fit-content;
-  transition-timing-function: ease-in;
-  transition: 0.8s;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .pointer {

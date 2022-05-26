@@ -9,8 +9,8 @@ import {
 } from "../../utils/service-requests";
 import styles from "./Products.module.css";
 
-const ProductCard = ({
-  product: {
+const ProductCard = ({ product }) => {
+  const {
     _id,
     author,
     badge,
@@ -22,8 +22,7 @@ const ProductCard = ({
     productImg,
     rating,
     title,
-  },
-}) => {
+  } = product;
   const {
     state: { isAuthenticated },
   } = useAuth();
@@ -51,7 +50,9 @@ const ProductCard = ({
         <strong className="overlay-text alert secondary ">Out of Stock</strong>
       )}
       <div className={`${!inStock ? "opacity" : ""} card-img mx-auto p-s`}>
-        <img src={productImg} alt="book cover" />
+        <Link to={`/products/${_id}`} state={{ product: product }}>
+          <img src={productImg} alt="book cover" />
+        </Link>
       </div>
       <div className={`${styles.card_details}`}>
         <div className="card-details px-s">
@@ -85,23 +86,7 @@ const ProductCard = ({
               disabled={!inStock}
               onClick={() => {
                 isAuthenticated
-                  ? addToCart(
-                      {
-                        _id,
-                        author,
-                        badge,
-                        binding,
-                        discount,
-                        inStock,
-                        lang,
-                        price,
-                        productImg,
-                        rating,
-                        title,
-                      },
-                      cartDispatch,
-                      wishlistDispatch
-                    )
+                  ? addToCart(product, cartDispatch, wishlistDispatch)
                   : navigate("/login");
               }}
             >
@@ -123,23 +108,7 @@ const ProductCard = ({
               disabled={!inStock}
               onClick={() => {
                 isAuthenticated
-                  ? addToWishlist(
-                      {
-                        _id,
-                        author,
-                        badge,
-                        binding,
-                        discount,
-                        inStock,
-                        lang,
-                        price,
-                        productImg,
-                        rating,
-                        title,
-                      },
-                      wishlistDispatch,
-                      cartDispatch
-                    )
+                  ? addToWishlist(product, wishlistDispatch, cartDispatch)
                   : navigate("/login");
               }}
             >

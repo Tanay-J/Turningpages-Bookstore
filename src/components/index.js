@@ -12,3 +12,6 @@ export { SpecialCategories } from "./homepage/SpecialCategories";
 export { Topbar } from "./navigation/Topbar";
 export { WishlistProducts } from "./wishlist/WishlistProducts";
 export { MockAPI } from "./MockAPI/MockAPI";
+export { ProductCard } from "./products/ProductCard";
+export { ProductImage } from "./products/singleProduct/ProductImage";
+export { ProductDetails } from "./products/singleProduct/ProductDetails";

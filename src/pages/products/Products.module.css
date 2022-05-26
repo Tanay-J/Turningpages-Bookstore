@@ -1,0 +1,6 @@
+.single_prod_container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  width: 80vw;
+  height: 80vh;
+}

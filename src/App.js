@@ -1,6 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import { MockAPI } from "./components";
-import { Cart, Homepage, Login, Products, Signup, Wishlist } from "./pages";
+import {
+  Cart,
+  Homepage,
+  Login,
+  Products,
+  Signup,
+  SingleProduct,
+  Wishlist,
+} from "./pages";
 import { RequiresAuth } from "./utils/auth/RequiresAuth";
 
 function App() {
@@ -11,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/products" element={<Products />}></Route>
+        <Route path="/products/:productId" element={<SingleProduct />}></Route>
         <Route
           path="/cart"
           element={
