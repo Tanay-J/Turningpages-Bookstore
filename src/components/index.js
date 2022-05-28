@@ -15,3 +15,5 @@ export { MockAPI } from "./MockAPI/MockAPI";
 export { ProductCard } from "./products/ProductCard";
 export { ProductImage } from "./products/singleProduct/ProductImage";
 export { ProductDetails } from "./products/singleProduct/ProductDetails";
+export { Addresses } from "./checkout/Addresses";
+export { OrderSummary } from "./checkout/OrderSummary";

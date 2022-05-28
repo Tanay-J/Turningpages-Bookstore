@@ -1,0 +1,15 @@
+.address_wrapper {
+  border: 1px solid gainsboro;
+  max-width: 35rem;
+}
+.address_container {
+  padding-left: 30px;
+  text-indent: -30px;
+}
+.summary {
+  display: grid;
+  grid-template-columns: 60% auto auto auto;
+  gap: 1rem;
+  width: 35rem;
+}
+
