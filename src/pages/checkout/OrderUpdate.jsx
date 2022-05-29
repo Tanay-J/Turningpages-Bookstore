@@ -22,7 +22,10 @@ const OrderUpdate = () => {
             <p className="text-xs font-bold my-m">Order Summary</p>
             <ul>
               {cartItems.map((item) => (
-                <li className="flex gap-1 align-items-center mx-l my-xs">
+                <li
+                  className="flex gap-1 align-items-center mx-l my-xs"
+                  key={item._id}
+                >
                   <img
                     className={`${styles.thumbnail}`}
                     src={item.productImg}
