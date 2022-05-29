@@ -5,6 +5,7 @@ import {
   Checkout,
   Homepage,
   Login,
+  OrderUpdate,
   Products,
   Signup,
   SingleProduct,
@@ -42,6 +43,14 @@ function App() {
           element={
             <RequiresAuth>
               <Checkout />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/orderupdate"
+          element={
+            <RequiresAuth>
+              <OrderUpdate />
             </RequiresAuth>
           }
         />

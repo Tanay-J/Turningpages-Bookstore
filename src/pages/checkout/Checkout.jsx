@@ -1,4 +1,10 @@
-import { Addresses, Navbar, OrderSummary, Topbar } from "../../components";
+import {
+  Addresses,
+  Footer,
+  Navbar,
+  OrderSummary,
+  Topbar,
+} from "../../components";
 
 const Checkout = () => {
   return (
@@ -10,6 +16,7 @@ const Checkout = () => {
         <Addresses />
         <OrderSummary />
       </main>
+      <Footer />
     </>
   );
 };
