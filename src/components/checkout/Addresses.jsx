@@ -24,7 +24,7 @@ const Addresses = () => {
       <div className={`${styles.address_wrapper} grid card-shadow my-s p-m`}>
         {addressData.map((addrs) => (
           <div className={`${styles.address_container} my-s`}>
-            <input type="radio" name="address" id="address" />
+            <input type="radio" name="address" id="address" checked />
             <label className='mx-xs' htmlFor="address">
               <span className="font-bold">{addrs.name}, </span>
               {addrs.line1}, {addrs.line2} {addrs.city}, {addrs.state} -
