@@ -39,6 +39,10 @@ ul {
   justify-content: flex-start;
 }
 
+.align-items-center {
+  align-items: center;
+}
+
 .flex-grow-1 {
   flex-grow: 1;
 }
@@ -155,4 +159,7 @@ ul {
 
 .pointer {
   cursor: pointer;
+}
+.width-100 {
+  width: 100%;
 }

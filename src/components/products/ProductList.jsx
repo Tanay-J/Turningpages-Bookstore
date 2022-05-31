@@ -10,7 +10,9 @@ const ProductList = () => {
         {finalProducts.length === 0 ? (
           <h3>No Products</h3>
         ) : (
-          finalProducts.map((product) => <ProductCard product={product} />)
+          finalProducts.map((product) => (
+            <ProductCard product={product} key={product._id} />
+          ))
         )}
       </div>
     </main>

@@ -2,8 +2,10 @@ import { Routes, Route } from "react-router-dom";
 import { MockAPI } from "./components";
 import {
   Cart,
+  Checkout,
   Homepage,
   Login,
+  OrderUpdate,
   Products,
   Signup,
   SingleProduct,
@@ -33,6 +35,22 @@ function App() {
           element={
             <RequiresAuth>
               <Wishlist />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <RequiresAuth>
+              <Checkout />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path="/orderupdate"
+          element={
+            <RequiresAuth>
+              <OrderUpdate />
             </RequiresAuth>
           }
         />
