@@ -1,16 +1,22 @@
-export function wishlistReducer(state, action) {
+const wishlistReducer = (state, action) => {
   switch (action.type) {
+    case "GET_WISHLIST":
+      return { ...state, wishlistItems: action.payload };
+
     case "ADD_TO_WISHLIST":
       return {
-        wishlistItems: [...state.wishlistItems, action.payload],
+        ...state,
+        wishlistItems: action.payload,
       };
+
     case "REMOVE_FROM_WISHLIST":
       return {
-        wishlistItems: state.wishlistItems.filter(
-          (item) => item._id !== action.payload
-        ),
+        ...state,
+        wishlistItems: action.payload,
       };
+
     default:
-      break;
+      return state;
   }
-}
+};
+export { wishlistReducer };

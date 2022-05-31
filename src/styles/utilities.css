@@ -11,6 +11,9 @@ ul {
 }
 
 /* Links */
+.link {
+  border-bottom: 1px solid transparent;
+}
 .btn .link:hover {
   border: none;
 }
@@ -34,6 +37,10 @@ ul {
 
 .justify-content-start {
   justify-content: flex-start;
+}
+
+.align-items-center {
+  align-items: center;
 }
 
 .flex-grow-1 {
@@ -108,7 +115,16 @@ ul {
 .text-left {
   text-align: left;
 }
-
+/* background */
+.bg-primary {
+  background-color: var(--primary-light);
+}
+.bg-success {
+  background-color: var(--success);
+}
+.bg-danger {
+  background-color: var(--danger);
+}
 /* Buttons */
 .btn {
   cursor: pointer;
@@ -134,4 +150,16 @@ ul {
 .main-container {
   display: grid;
   grid-template-columns: auto auto;
+}
+.alert {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.pointer {
+  cursor: pointer;
+}
+.width-100 {
+  width: 100%;
 }

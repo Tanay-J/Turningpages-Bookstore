@@ -8,3 +8,12 @@
   position: absolute;
   bottom: 0;
 }
+.prod_img {
+  justify-self: center;
+  height: 90%;
+}
+.prod_details_container {
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-start;
+}

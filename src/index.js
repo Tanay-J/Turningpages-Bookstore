@@ -7,6 +7,7 @@ import { FilterProvider } from "./contexts/filter-context";
 import "./index.css";
 import { CartProvider } from "./contexts/cart-context";
 import { WishlistProvider } from "./contexts/wishlist-context";
+import { AuthProvider } from "./contexts/auth-context";
 
 // Call make Server
 makeServer();
@@ -14,13 +15,15 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <CartProvider>
-        <WishlistProvider>
-          <FilterProvider>
-            <App />
-          </FilterProvider>
-        </WishlistProvider>
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <WishlistProvider>
+            <FilterProvider>
+              <App />
+            </FilterProvider>
+          </WishlistProvider>
+        </CartProvider>
+      </AuthProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

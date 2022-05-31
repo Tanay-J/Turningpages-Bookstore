@@ -2,8 +2,9 @@ import { useCart } from "../contexts/cart-context";
 
 const getBillingDetails = () => {
   let delivery = 0;
-  const { cartState } = useCart();
-  const { cartItems } = cartState;
+  const {
+    cartState: { cartItems },
+  } = useCart();
 
   const totalAmount = cartItems.reduce(
     (acc, curr) => Number(curr.price) * Number(curr.qty) + acc,

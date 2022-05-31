@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../../contexts/cart-context";
 import { useWishlist } from "../../contexts/wishlist-context";
+import { addToCart, removeFromWishlist } from "../../utils/service-requests";
 
 const WishlistProducts = () => {
-  const { wishlistState, wishlistDispatch } = useWishlist();
-  const { wishlistItems } = wishlistState;
+  const {
+    wishlistState: { wishlistItems },
+    wishlistDispatch,
+  } = useWishlist();
   const { cartDispatch } = useCart();
 
   return (
@@ -18,7 +22,9 @@ const WishlistProducts = () => {
             key={item._id}
           >
             <div className="grid-row-span-2 card-img">
-              <img src={item.productImg} alt="product image" />
+              <Link to={`/products/${item._id}`} state={{ product: item }}>
+                <img src={item.productImg} alt="product image" />
+              </Link>
             </div>
             <div className="mx-m">
               <div className="card-details">
@@ -44,26 +50,15 @@ const WishlistProducts = () => {
                 <small
                   className="link"
                   onClick={() => {
-                    cartDispatch({
-                      type: "ADD_TO_CART",
-                      payload: item,
-                    });
-                    wishlistDispatch({
-                      type: "REMOVE_FROM_WISHLIST",
-                      payload: item._id,
-                    });
+                    addToCart(item, cartDispatch);
+                    removeFromWishlist(item._id, wishlistDispatch);
                   }}
                 >
                   ADD TO CART
                 </small>
                 <small
                   className="link text-gray"
-                  onClick={() =>
-                    wishlistDispatch({
-                      type: "REMOVE_FROM_WISHLIST",
-                      payload: item._id,
-                    })
-                  }
+                  onClick={() => removeFromWishlist(item._id, wishlistDispatch)}
                 >
                   REMOVE
                 </small>
