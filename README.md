@@ -5,7 +5,7 @@
 Turning Pages Bookstore is one stop shop for all your literary needs. Choose from thousands of books across genres and that too without pinching your pocket hard!
 
 ### Live Demo:
-https://turningpagesbookstore.netlify.app/
+https://turningpages.vercel.app/
 
 ### Main Features
 
