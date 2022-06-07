@@ -10,7 +10,7 @@ const Banner = () => {
     <div className={`${styles.main_img_container} wrapper mx-auto my-xl`}>
       <img
         className={`${styles.main_img} br-m`}
-        src={process.env.PUBLIC_URL + "/assets/main-3.jpg"}
+        src={process.env.PUBLIC_URL + "/assets/main-banner.webp"}
       />
       <div className={`${styles.main_img_text} text-left br-m`}>
         <h2 className={`${styles.banner_title} h1 text-white br-m`}>
