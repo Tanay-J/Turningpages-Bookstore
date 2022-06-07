@@ -36,7 +36,7 @@ const Banner = () => {
           </button>
         </Link>
       </div>
-      <p class={`${styles.main_img_text_bottom} text-black text-xxs`}>
+      <p className={`${styles.main_img_text_bottom} text-black text-xxs`}>
         Free Delivery Above Rs. 499{" "}
       </p>
     </div>
