@@ -75,12 +75,12 @@ const LoginForm = () => {
                   />
                   {inputType === "password" ? (
                     <i
-                      class="fas fa-eye"
+                      className="fas fa-eye"
                       onClick={() => setInputType("text")}
                     ></i>
                   ) : (
                     <i
-                      class="fas fa-eye-slash"
+                      className="fas fa-eye-slash"
                       onClick={() => setInputType("password")}
                     ></i>
                   )}
