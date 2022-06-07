@@ -7,7 +7,7 @@ const Banner = () => {
   const { filterDispatch } = useFilter();
   const { categories } = useCategories();
   return (
-    <div className={`${styles.main_img_container} wrapper mx-auto my-m`}>
+    <div className={`${styles.main_img_container} wrapper mx-auto my-xl`}>
       <img
         className={`${styles.main_img} br-m`}
         src={process.env.PUBLIC_URL + "/assets/main-3.jpg"}
