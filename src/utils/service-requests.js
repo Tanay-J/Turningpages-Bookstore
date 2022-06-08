@@ -5,12 +5,17 @@ import { findItem } from "./findItem";
 
 //Cart
 export const getCart = async (cartDispatch) => {
-  const { token } = getLocalStorageData();
-  const response = await axios.get("/api/user/cart", {
-    headers: { authorization: token },
-  });
-  if (response.status === 200) {
-    cartDispatch({ type: "GET_CART", payload: response.data.cart });
+  try {
+    const { token } = getLocalStorageData();
+    const response = await axios.get("/api/user/cart", {
+      headers: { authorization: token },
+    });
+    if (response.status === 200) {
+      cartDispatch({ type: "GET_CART", payload: response.data.cart });
+    }
+  } catch (error) {
+    toast.error("Unable to get Cart items, try again!");
+    throw new Error(error);
   }
 };
 
@@ -20,24 +25,29 @@ export const addToCart = async (
   wishlistItems,
   wishlistDispatch
 ) => {
-  const { token } = getLocalStorageData();
-  const response = await axios.post(
-    "/api/user/cart",
-    { product: product },
-    { headers: { authorization: token } }
-  );
-  if (response.status === 201) {
-    toast.success("Added to Cart");
-    cartDispatch({ type: "ADD_TO_CART", payload: response.data.cart });
-    if (findItem(wishlistItems, product._id)) {
-      removeFromWishlist(product._id, wishlistDispatch);
+  try {
+    const { token } = getLocalStorageData();
+    const response = await axios.post(
+      "/api/user/cart",
+      { product: product },
+      { headers: { authorization: token } }
+    );
+    if (response.status === 201) {
+      toast.success("Added to Cart");
+      cartDispatch({ type: "ADD_TO_CART", payload: response.data.cart });
+      if (findItem(wishlistItems, product._id)) {
+        removeFromWishlist(product._id, wishlistDispatch);
+      }
     }
+  } catch (error) {
+    toast.error("Something went wrong, try again!");
+    throw new Error(error);
   }
 };
 
 export const changeQty = async (id, actionType, cartDispatch) => {
-  const { token } = getLocalStorageData();
   try {
+    const { token } = getLocalStorageData();
     const response = await axios.post(
       `/api/user/cart/${id}`,
       { action: { type: actionType } },
@@ -49,13 +59,14 @@ export const changeQty = async (id, actionType, cartDispatch) => {
       cartDispatch({ type: "CHANGE_QTY", payload: response.data.cart });
     }
   } catch (error) {
-    console.log(error);
+    toast.error("Unable to update quantity, try again!");
+    throw new Error(error);
   }
 };
 
 export const removeFromCart = async (id, cartDispatch) => {
-  const { token } = getLocalStorageData();
   try {
+    const { token } = getLocalStorageData();
     const response = await axios.delete(`/api/user/cart/${id}`, {
       headers: { authorization: token },
     });
@@ -64,14 +75,15 @@ export const removeFromCart = async (id, cartDispatch) => {
       cartDispatch({ type: "REMOVE_FROM_CART", payload: response.data.cart });
     }
   } catch (error) {
-    console.log(error);
+    toast.error("Something went wrong, try again!");
+    throw new Error(error);
   }
 };
 
 //Wishlist
 export const getWishlist = async (wishlistDispatch) => {
-  const { token } = getLocalStorageData();
   try {
+    const { token } = getLocalStorageData();
     const response = await axios.get("/api/user/wishlist", {
       headers: { authorization: token },
     });
@@ -82,7 +94,8 @@ export const getWishlist = async (wishlistDispatch) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    toast.error("Unable to get Wishlist items, try again!");
+    throw new Error(error);
   }
 };
 export const addToWishlist = async (
@@ -91,8 +104,8 @@ export const addToWishlist = async (
   cartItems,
   cartDispatch
 ) => {
-  const { token } = getLocalStorageData();
   try {
+    const { token } = getLocalStorageData();
     const response = await axios.post(
       "/api/user/wishlist",
       { product },
@@ -109,13 +122,14 @@ export const addToWishlist = async (
       }
     }
   } catch (error) {
-    console.log(error);
+    toast.error("Something went wrong, try again!");
+    throw new Error(error);
   }
 };
 
 export const removeFromWishlist = async (id, wishlistDispatch) => {
-  const { token } = getLocalStorageData();
   try {
+    const { token } = getLocalStorageData();
     const response = await axios.delete(`/api/user/wishlist/${id}`, {
       headers: { authorization: token },
     });
@@ -127,7 +141,8 @@ export const removeFromWishlist = async (id, wishlistDispatch) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    toast.error("Something went wrong, try again!");
+    throw new Error(error);
   }
 };
 
@@ -142,7 +157,11 @@ export const signUpHandler = async (signUpData, navigate, setErrorMsg) => {
     }
   } catch (error) {
     if (error.response.status === 422) {
-      setErrorMsg("Email Already Exists.");
+      toast.error("Email already exists, please Login");
+      setErrorMsg("Email already exists, please Login");
+    } else {
+      toast.error("Something went wrong, try again!");
+      throw new Error(error);
     }
   }
 };
@@ -172,11 +191,16 @@ export const loginHandler = async (
       navigate(location?.state?.from?.pathname || "/");
       toast.success(`Welcome ${response.data.foundUser.firstName}`);
     } else if (response.status === 201) {
+      toast.error("Invalid credentials");
       setErrorMsg("The credentials you entered are invalid");
     }
   } catch (error) {
     if (error.response.status === 404) {
+      toast.error("Email not registered");
       setErrorMsg("The email you entered is not Registered");
+    } else {
+      toast.error("Something went wrong, try again!");
+      throw new Error(error);
     }
   }
 };

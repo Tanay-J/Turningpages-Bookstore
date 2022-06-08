@@ -29,10 +29,6 @@ const Navbar = () => {
         className={`${styles.brand_logo}`}
         src={process.env.PUBLIC_URL + "/assets/Turning Pages-1.png"}
       />
-      <input
-        className={`input ${styles.search} p-xs br-s my-l mx-auto`}
-        placeholder="Search"
-      />
       <nav className={`${styles.nav_links} my-l`}>
         <ul className={`${styles.nav_links}`}>
           {isAuthenticated && (

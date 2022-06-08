@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/auth-context";
 import { useCart } from "../../contexts/cart-context";
 import { useWishlist } from "../../contexts/wishlist-context";
@@ -33,7 +33,7 @@ const LoginForm = () => {
     e.preventDefault();
     setLoginData({ email: "tanay@gmail.com", password: "tanay" });
   };
-  
+
   return (
     <>
       <div className="wrapper mx-auto my-m">
@@ -75,26 +75,15 @@ const LoginForm = () => {
                   />
                   {inputType === "password" ? (
                     <i
-                      class="fas fa-eye"
+                      className="fas fa-eye"
                       onClick={() => setInputType("text")}
                     ></i>
                   ) : (
                     <i
-                      class="fas fa-eye-slash"
+                      className="fas fa-eye-slash"
                       onClick={() => setInputType("password")}
                     ></i>
                   )}
-                </div>
-              </div>
-              <div className="flex flex-wrap justify-content-space-bet gap-2 my-xs">
-                <div>
-                  <input type="checkbox" />
-                  <small>Remember Me</small>
-                </div>
-                <div>
-                  <a className="link font-bold" href="">
-                    <small>Forgot Password?</small>
-                  </a>
                 </div>
               </div>
               {errorMsg && (
@@ -125,11 +114,11 @@ const LoginForm = () => {
                   </button>
                 )}
 
-                <button className="btn btn-outline outline-primary">
-                  <a className="link" href="/pages/signup.html">
+                <Link to="/signup">
+                  <button className="btn btn-outline outline-primary width-100">
                     Sign Up
-                  </a>
-                </button>
+                  </button>
+                </Link>
                 <button
                   className="btn btn-outline outline-primary my-m"
                   onClick={setGuestLogin}

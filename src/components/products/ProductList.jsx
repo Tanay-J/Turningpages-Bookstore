@@ -1,12 +1,13 @@
 import { getFinalProducts } from "../../utils/getFinalProducts";
 import { ProductCard } from "./ProductCard";
+import styles from "./Products.module.css";
 
 const ProductList = () => {
   const { finalProducts } = getFinalProducts();
 
   return (
     <main className="mx-auto p-s">
-      <div className="grid grid-col-3 gap-2">
+      <div className={`${styles.prod_list}`}>
         {finalProducts.length === 0 ? (
           <h3>No Products</h3>
         ) : (

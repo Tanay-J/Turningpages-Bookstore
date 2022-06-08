@@ -1,5 +1,6 @@
-import styles from "./Homepage.module.css";
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
+import styles from "./Homepage.module.css";
 import { useCategories } from "../../hooks";
 import { useFilter } from "../../contexts/filter-context";
 
@@ -12,7 +13,7 @@ const SpecialCategories = () => {
       <div className={`${styles.categories} my-m`}>
         {categories.map((category) => {
           return (
-            <>
+            <Fragment key={category._id}>
               {category.categoryType === "special" && (
                 <Link
                   to="/products"
@@ -40,7 +41,7 @@ const SpecialCategories = () => {
                   </div>
                 </Link>
               )}
-            </>
+            </Fragment>
           );
         })}
       </div>
