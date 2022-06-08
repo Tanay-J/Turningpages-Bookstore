@@ -7,7 +7,7 @@ const Topbar = () => {
   const { filterDispatch } = useFilter();
   const { categories } = useCategories();
   const activeStyle = ({ isActive }) => ({
-    color: isActive ? "orange" : "",
+    color: isActive ? "#f59e04" : "",
   });
 
   return (
@@ -29,7 +29,7 @@ const Topbar = () => {
           );
         }}
       >
-         Books
+        Books
       </NavLink>
       <NavLink to="/categories" className="link link-dark" style={activeStyle}>
         Categories
