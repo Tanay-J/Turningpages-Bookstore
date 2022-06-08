@@ -1,19 +1,24 @@
 import styles from "./Navigation.module.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useFilter } from "../../contexts/filter-context";
 import { useCategories } from "../../hooks/useCategories";
 
 const Topbar = () => {
   const { filterDispatch } = useFilter();
   const { categories } = useCategories();
+  const activeStyle = ({ isActive }) => ({
+    color: isActive ? "orange" : "",
+  });
+
   return (
     <nav className={`${styles.topbar_container}`}>
-      <Link to="/" className="link link-dark">
+      <NavLink to="/" className="link link-dark" style={activeStyle}>
         Home
-      </Link>
-      <Link
+      </NavLink>
+      <NavLink
         to="/products"
         className="link link-dark"
+        style={activeStyle}
         onClick={() => {
           filterDispatch({ type: "REMOVE_CATEGORIES", payload: [] });
           categories.map((cat) =>
@@ -24,11 +29,11 @@ const Topbar = () => {
           );
         }}
       >
-        All Products
-      </Link>
-      <Link to="/categories" className="link link-dark">
+         Books
+      </NavLink>
+      <NavLink to="/categories" className="link link-dark" style={activeStyle}>
         Categories
-      </Link>
+      </NavLink>
     </nav>
   );
 };
