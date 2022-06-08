@@ -1,5 +1,7 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 import { getLocalStorageData } from "./getLocalStorageData";
+import { findItem } from "./findItem";
 
 //Cart
 export const getCart = async (cartDispatch) => {
@@ -12,7 +14,12 @@ export const getCart = async (cartDispatch) => {
   }
 };
 
-export const addToCart = async (product, cartDispatch, wishlistDispatch) => {
+export const addToCart = async (
+  product,
+  cartDispatch,
+  wishlistItems,
+  wishlistDispatch
+) => {
   const { token } = getLocalStorageData();
   const response = await axios.post(
     "/api/user/cart",
@@ -20,8 +27,11 @@ export const addToCart = async (product, cartDispatch, wishlistDispatch) => {
     { headers: { authorization: token } }
   );
   if (response.status === 201) {
+    toast.success("Added to Cart");
     cartDispatch({ type: "ADD_TO_CART", payload: response.data.cart });
-    removeFromWishlist(product._id, wishlistDispatch);
+    if (findItem(wishlistItems, product._id)) {
+      removeFromWishlist(product._id, wishlistDispatch);
+    }
   }
 };
 
@@ -50,6 +60,7 @@ export const removeFromCart = async (id, cartDispatch) => {
       headers: { authorization: token },
     });
     if (response.status === 200) {
+      toast.success("Removed from Cart");
       cartDispatch({ type: "REMOVE_FROM_CART", payload: response.data.cart });
     }
   } catch (error) {
@@ -77,6 +88,7 @@ export const getWishlist = async (wishlistDispatch) => {
 export const addToWishlist = async (
   product,
   wishlistDispatch,
+  cartItems,
   cartDispatch
 ) => {
   const { token } = getLocalStorageData();
@@ -87,11 +99,14 @@ export const addToWishlist = async (
       { headers: { authorization: token } }
     );
     if (response.status === 201) {
+      toast.success("Added to Wishlist");
       wishlistDispatch({
         type: "ADD_TO_WISHLIST",
         payload: response.data.wishlist,
       });
-      removeFromCart(product._id, cartDispatch);
+      if (findItem(cartItems, product._id)) {
+        removeFromCart(product._id, cartDispatch);
+      }
     }
   } catch (error) {
     console.log(error);
@@ -105,6 +120,7 @@ export const removeFromWishlist = async (id, wishlistDispatch) => {
       headers: { authorization: token },
     });
     if (response.status === 200) {
+      toast.success("Removed from Wishlist");
       wishlistDispatch({
         type: "REMOVE_FROM_WISHLIST",
         payload: response.data.wishlist,
@@ -122,6 +138,7 @@ export const signUpHandler = async (signUpData, navigate, setErrorMsg) => {
     if (response.status === 201) {
       setErrorMsg("");
       navigate("/login");
+      toast.success("Signup successful! Please Login");
     }
   } catch (error) {
     if (error.response.status === 422) {
@@ -153,6 +170,7 @@ export const loginHandler = async (
       getCart(cartDispatch);
       getWishlist(wishlistDispatch);
       navigate(location?.state?.from?.pathname || "/");
+      toast.success(`Welcome ${response.data.foundUser.firstName}`);
     } else if (response.status === 201) {
       setErrorMsg("The credentials you entered are invalid");
     }

@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import { MockAPI } from "./components";
 import {
   Cart,
@@ -16,6 +17,23 @@ import { RequiresAuth } from "./utils/auth/RequiresAuth";
 function App() {
   return (
     <>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          success: {
+            style: {
+              background: "#4fb50b",
+              color: "#fff",
+            },
+          },
+          error: {
+            style: {
+              background: "#b5270b",
+              color: "#fff",
+            },
+          },
+        }}
+      />
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/login" element={<Login />}></Route>
