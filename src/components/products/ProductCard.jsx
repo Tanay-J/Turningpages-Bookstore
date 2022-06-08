@@ -86,7 +86,12 @@ const ProductCard = ({ product }) => {
               disabled={!inStock}
               onClick={() => {
                 isAuthenticated
-                  ? addToCart(product, cartDispatch, wishlistDispatch)
+                  ? addToCart(
+                      product,
+                      cartDispatch,
+                      wishlistItems,
+                      wishlistDispatch
+                    )
                   : navigate("/login");
               }}
             >
@@ -108,7 +113,12 @@ const ProductCard = ({ product }) => {
               disabled={!inStock}
               onClick={() => {
                 isAuthenticated
-                  ? addToWishlist(product, wishlistDispatch, cartDispatch)
+                  ? addToWishlist(
+                      product,
+                      wishlistDispatch,
+                      cartItems,
+                      cartDispatch
+                    )
                   : navigate("/login");
               }}
             >
