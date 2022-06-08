@@ -26,11 +26,8 @@ const Topbar = () => {
       >
         All Products
       </Link>
-      <Link to="" className="link link-dark">
-        Categories{" "}
-      </Link>
-      <Link to="" className="link link-dark">
-        Track Order
+      <Link to="/categories" className="link link-dark">
+        Categories
       </Link>
     </nav>
   );

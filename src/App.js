@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { MockAPI } from "./components";
 import {
   Cart,
+  Categories,
   Checkout,
   Homepage,
   Login,
@@ -41,6 +42,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/products" element={<Products />}></Route>
+        <Route path="/categories" element={<Categories />}></Route>
         <Route path="/products/:productId" element={<SingleProduct />}></Route>
         <Route
           path="/cart"
