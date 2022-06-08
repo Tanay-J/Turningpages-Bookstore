@@ -13,6 +13,7 @@ import {
   Wishlist,
 } from "./pages";
 import { RequiresAuth } from "./utils/auth/RequiresAuth";
+import { ScrollToTop } from "./utils/ScrollToTop";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           },
         }}
       />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/login" element={<Login />}></Route>
