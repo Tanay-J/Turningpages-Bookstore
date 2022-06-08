@@ -17,3 +17,4 @@ export { ProductImage } from "./products/singleProduct/ProductImage";
 export { ProductDetails } from "./products/singleProduct/ProductDetails";
 export { Addresses } from "./checkout/Addresses";
 export { OrderSummary } from "./checkout/OrderSummary";
+export { AllCategories } from "./categories/AllCategories";
