@@ -68,8 +68,12 @@ const CartProducts = () => {
                 <small
                   className="link"
                   onClick={() => {
-                    addToWishlist(item, wishlistDispatch);
-                    removeFromCart(item._id, cartDispatch);
+                    addToWishlist(
+                      item,
+                      wishlistDispatch,
+                      cartItems,
+                      cartDispatch
+                    );
                   }}
                 >
                   ADD TO WISHLIST

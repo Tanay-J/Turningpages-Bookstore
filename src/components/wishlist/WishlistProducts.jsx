@@ -49,10 +49,14 @@ const WishlistProducts = () => {
               <div className="flex gap-2 my-m">
                 <small
                   className="link"
-                  onClick={() => {
-                    addToCart(item, cartDispatch);
-                    removeFromWishlist(item._id, wishlistDispatch);
-                  }}
+                  onClick={() =>
+                    addToCart(
+                      item,
+                      cartDispatch,
+                      wishlistItems,
+                      wishlistDispatch
+                    )
+                  }
                 >
                   ADD TO CART
                 </small>
