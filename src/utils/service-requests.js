@@ -14,7 +14,9 @@ export const getCart = async (cartDispatch) => {
       cartDispatch({ type: "GET_CART", payload: response.data.cart });
     }
   } catch (error) {
-    toast.error("Unable to get Cart items, try again!");
+    if (error.response.status === 500) {
+      toast.error("Please Login");
+    } else toast.error("Unable to get Cart items, try again!");
     throw new Error(error);
   }
 };
@@ -94,7 +96,9 @@ export const getWishlist = async (wishlistDispatch) => {
       });
     }
   } catch (error) {
-    toast.error("Unable to get Wishlist items, try again!");
+    if (error.response.status === 500) {
+      toast.error("Please Login");
+    } else toast.error("Unable to get Wishlist items, try again!");
     throw new Error(error);
   }
 };
@@ -170,8 +174,6 @@ export const signUpHandler = async (signUpData, navigate, setErrorMsg) => {
 export const loginHandler = async (
   loginData,
   dispatch,
-  cartDispatch,
-  wishlistDispatch,
   navigate,
   location,
   setErrorMsg,
@@ -181,13 +183,12 @@ export const loginHandler = async (
 
   try {
     let response = await axios.post("/api/auth/login", loginData);
+
     if (response.status === 200) {
       localStorage.setItem("token", response.data.encodedToken);
       localStorage.setItem("userData", JSON.stringify(response.data.foundUser));
       setErrorMsg("");
       dispatch({ type: "LOGIN", payload: response.data });
-      getCart(cartDispatch);
-      getWishlist(wishlistDispatch);
       navigate(location?.state?.from?.pathname || "/");
       toast.success(`Welcome ${response.data.foundUser.firstName}`);
     } else if (response.status === 201) {

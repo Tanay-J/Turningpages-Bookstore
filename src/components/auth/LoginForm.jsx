@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/auth-context";
-import { useCart } from "../../contexts/cart-context";
-import { useWishlist } from "../../contexts/wishlist-context";
 import { loginHandler } from "../../utils/service-requests";
 import styles from "./Auth.module.css";
 
@@ -11,8 +9,6 @@ const LoginForm = () => {
     state: { isAuthenticated },
     dispatch,
   } = useAuth();
-  const { cartDispatch } = useCart();
-  const { wishlistDispatch } = useWishlist();
   const location = useLocation();
 
   const navigate = useNavigate();
@@ -97,8 +93,6 @@ const LoginForm = () => {
                       loginHandler(
                         loginData,
                         dispatch,
-                        cartDispatch,
-                        wishlistDispatch,
                         navigate,
                         location,
                         setErrorMsg,
