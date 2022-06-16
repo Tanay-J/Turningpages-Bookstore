@@ -60,6 +60,17 @@ const Navbar = () => {
           )}
 
           <li className="px-s">
+            <Link to="/wishlist" onClick={() => getWishlist(wishlistDispatch)}>
+              <div className="badge-container">
+                <div className="badge">
+                  <i className={`fas fa-heart ${styles.nav_icons} text-s`}></i>
+                  <span className="badge-icon">{wishlistItems.length}</span>
+                </div>
+              </div>
+            </Link>
+          </li>
+
+          <li className="px-s">
             <Link to="/cart" onClick={() => getCart(cartDispatch)}>
               <div className="badge-container">
                 <div className="badge">
@@ -67,17 +78,6 @@ const Navbar = () => {
                     className={`fas fa-shopping-cart ${styles.nav_icons} text-s`}
                   ></i>
                   <span className="badge-icon">{totalQty}</span>
-                </div>
-              </div>
-            </Link>
-          </li>
-
-          <li className="px-s">
-            <Link to="/wishlist" onClick={() => getWishlist(wishlistDispatch)}>
-              <div className="badge-container">
-                <div className="badge">
-                  <i className={`fas fa-heart ${styles.nav_icons} text-s`}></i>
-                  <span className="badge-icon">{wishlistItems.length}</span>
                 </div>
               </div>
             </Link>
