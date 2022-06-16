@@ -13,7 +13,7 @@ const SingleProduct = () => {
       <Navbar />
       <Topbar />
       <main
-        className={`${styles.single_prod_container} py-xl my-m mx-auto card-shadow`}
+        className={`${styles.single_prod_container} py-xl my-xl mx-auto card-shadow`}
       >
         <ProductImage productImg={product.productImg} />
         <ProductDetails product={product} />

@@ -56,7 +56,13 @@ const ProductCard = ({ product }) => {
       </div>
       <div className={`${styles.card_details}`}>
         <div className="card-details px-s">
-          <div className="text-xs font-light ">{title}</div>
+          <Link
+            to={`/products/${_id}`}
+            state={{ product: product }}
+            className="link-dark link-no-style"
+          >
+            <div className="text-xs font-light ">{title}</div>
+          </Link>
           <div className="sub-title">
             {lang}, {binding}, {author}
           </div>

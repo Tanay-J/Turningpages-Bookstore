@@ -17,6 +17,12 @@ ul {
 .btn .link:hover {
   border: none;
 }
+.link-no-style{
+  border: none;
+}
+.link-no-style:hover {
+  border: none;
+}
 .link-white {
   color: var(--text-white);
   border: 1px solid transparent;

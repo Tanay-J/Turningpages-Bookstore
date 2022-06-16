@@ -15,7 +15,9 @@
 }
 .prod_img {
   justify-self: center;
-  height: 90%;
+  max-height: 70%;
+  object-fit: contain;
+  margin-top: 12px;
 }
 .prod_details_container {
   display: flex;
