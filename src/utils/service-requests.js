@@ -66,14 +66,14 @@ export const changeQty = async (id, actionType, cartDispatch) => {
   }
 };
 
-export const removeFromCart = async (id, cartDispatch) => {
+export const removeFromCart = async (id, cartDispatch, noToast) => {
   try {
     const { token } = getLocalStorageData();
     const response = await axios.delete(`/api/user/cart/${id}`, {
       headers: { authorization: token },
     });
     if (response.status === 200) {
-      toast.success("Removed from Cart");
+      !noToast && toast.success("Removed from Cart");
       cartDispatch({ type: "REMOVE_FROM_CART", payload: response.data.cart });
     }
   } catch (error) {

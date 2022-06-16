@@ -5,6 +5,7 @@ import { useCart } from "../../contexts/cart-context";
 import { getBillingDetails } from "../../utils/getBillingDetails";
 import { loadScript } from "../../utils/razorpay/loadScript";
 import styles from "./Checkout.module.css";
+import { removeFromCart } from "../../utils/service-requests";
 
 const OrderSummary = () => {
   const {
@@ -25,6 +26,10 @@ const OrderSummary = () => {
 
   const navigate = useNavigate();
 
+  const clearCart = () => {
+    cartItems.forEach((item) => removeFromCart(item._id, cartDispatch, true));
+  };
+
   const paymentHandler = async () => {
     const response = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js "
@@ -42,7 +47,7 @@ const OrderSummary = () => {
       description: "You are paying",
       image: "https://i.imgur.com/LiGUeU8.png",
       handler: function (response) {
-        cartDispatch({ type: "CLEAR_CART" });
+        clearCart();
         navigate("/orderupdate", {
           state: {
             paymentId: response.razorpay_payment_id,
