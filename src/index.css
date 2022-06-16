@@ -1,11 +1,11 @@
 @import url(/src/styles/utilities.css);
 
- :root{
+:root {
   --primary-dark: #242424;
   --primary-light: #f59e04;
   --primary-light-shade: #f5d9aa;
 
-  --bg-offwhite:#fffdf9;
+  --bg-offwhite: #fffdf9;
 
   --text-white: #fffdf9;
   --text-light: #fffdf9;
@@ -13,13 +13,26 @@
   --text-gray: hsl(0, 0%, 50%);
 
   --shadow: rgba(0, 0, 0, 0.24);
-  --gray-lighter:#EBEBEB;
-  --gray-light: #CCCCCC;
+  --gray-lighter: #ebebeb;
+  --gray-light: #cccccc;
   --gray-dark: #9e9d9d;
   --gray-darker: #5c5c5c;
 
-  --success: #5AB045;
-  --danger: #E9353B;
+  --success: #5ab045;
+  --danger: #e9353b;
+}
 
-} 
-
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-track {
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  
+}
+body::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  background: var(--gray-light);
+  outline: none;
+}
