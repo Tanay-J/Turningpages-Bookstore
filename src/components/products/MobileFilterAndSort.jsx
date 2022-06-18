@@ -13,7 +13,7 @@ const MobileFilterAndSort = () => {
   return (
     <aside className={`${styles.mobile_aside_container} px-m py-s`}>
       {show && (
-        <>
+        <div className={`${styles.filter_container}`}>
           <div className="flex justify-content-space-bet">
             <h6 className="h6">Filters</h6>
             <button
@@ -207,7 +207,7 @@ const MobileFilterAndSort = () => {
               <small>1 star & above</small>
             </label>
           </form>
-        </>
+        </div>
       )}
       <div
         onClick={() => setShow(!show)}
