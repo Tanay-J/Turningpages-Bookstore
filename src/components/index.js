@@ -2,6 +2,7 @@ export { Banner } from "./homepage/Banner";
 export { CartProducts } from "./cart/CartProducts";
 export { Featured } from "./homepage/Featured";
 export { FilterAndSort } from "./products/FilterAndSort";
+export { MobileFilterAndSort } from "./products/MobileFilterAndSort";
 export { Footer } from "./navigation/Footer";
 export { GenreCategories } from "./homepage/GenreCategories";
 export { LoginForm } from "./auth/LoginForm";

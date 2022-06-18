@@ -1,6 +1,7 @@
 import {
   FilterAndSort,
   Footer,
+  MobileFilterAndSort,
   Navbar,
   ProductList,
   Topbar,
@@ -12,6 +13,7 @@ const Products = () => {
     <>
       <div className={`${styles.prod_list_wrapper} wrapper mx-auto my-m`}>
         <FilterAndSort />
+        <MobileFilterAndSort />
         <ProductList />
       </div>
 

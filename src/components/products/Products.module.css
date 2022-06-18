@@ -1,4 +1,6 @@
 .aside_container {
+  display: flex;
+  flex-direction: column;
   max-width: 20rem;
 }
 .card_vertical {
@@ -24,6 +26,12 @@
   flex-direction: column;
   justify-self: flex-start;
 }
+.mobile_aside_container {
+  display: none;
+}
+.show_filters {
+  display: none;
+}
 @media (max-width: 1280px) {
   .prod_list {
     display: grid;
@@ -36,5 +44,26 @@
     display: grid;
     grid-template-columns: auto;
     gap: 2rem;
+  }
+}
+@media (max-width: 560px) {
+  .show_filters {
+    display: block;
+    text-align: center;
+    font-family: "Lato";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--primary-light-shade);
+    z-index: 3;
+  }
+  .aside_container {
+    display: none;
+  }
+  .mobile_aside_container {
+    max-width: 20rem;
+    display: block;
+    margin: 0.5rem auto;
   }
 }
