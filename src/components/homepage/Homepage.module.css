@@ -81,3 +81,14 @@
 .text_overlay {
   position: absolute;
 }
+
+@media (max-width: 480px) {
+  .banner_title {
+    font-size: 1.75rem;
+  }
+  
+  .banner_sub_title {
+    font-size: 0.75rem;
+    margin: 0;
+  }
+}
