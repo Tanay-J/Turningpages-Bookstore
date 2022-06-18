@@ -6,6 +6,7 @@ export { Footer } from "./navigation/Footer";
 export { GenreCategories } from "./homepage/GenreCategories";
 export { LoginForm } from "./auth/LoginForm";
 export { Navbar } from "./navigation/Navbar";
+export { MobileNavbar } from "./navigation/MobileNavbar";
 export { ProductList } from "./products/ProductList";
 export { SignupForm } from "./auth/SignupForm";
 export { SpecialCategories } from "./homepage/SpecialCategories";
