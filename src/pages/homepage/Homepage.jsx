@@ -11,8 +11,6 @@ import {
 const Homepage = () => {
   return (
     <>
-      <Navbar />
-      <Topbar />
       <Banner />
       <Featured />
       <GenreCategories />

@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { MockAPI } from "./components";
+import { MobileNavbar, MockAPI, Navbar, Topbar } from "./components";
 import {
   Cart,
   Categories,
@@ -19,6 +19,9 @@ import { ScrollToTop } from "./utils/ScrollToTop";
 function App() {
   return (
     <>
+      <Navbar />
+      <MobileNavbar />
+      <Topbar />
       <Toaster
         position="top-center"
         toastOptions={{

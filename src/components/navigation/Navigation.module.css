@@ -1,7 +1,7 @@
 @import url(/src/styles/utilities.css);
 
 .brand_logo {
-  max-width: 7rem;
+  max-width: 6rem;
   height: auto;
   border: none;
 }
@@ -88,4 +88,43 @@
 
 .footer_section .h6 {
   color: var(--primary-light);
+}
+
+.mobile_nav_header {
+  display: none;
+}
+.mobile_nav_links {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  padding: 16px 8px;
+  top: 70%;
+  right: 3%;
+  background-color: var(--bg-offwhite);
+}
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .hamburger {
+    display: block;
+    position: absolute;
+    right: 3%;
+  }
+  .nav_header {
+    display: none;
+  }
+  .mobile_nav_header {
+    border: 1px solid transparent;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--primary-dark);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-offwhite);
+    z-index: 3;
+  }
 }

@@ -7,7 +7,7 @@ const FilterAndSort = () => {
   const { categories } = useCategories();
 
   return (
-    <aside className={`${styles.aside_container} flex flex-col px-m py-s`}>
+    <aside className={`${styles.aside_container} px-m py-s`}>
       <div className="flex justify-content-space-bet">
         <h6 className="h6">Filters</h6>
         <button

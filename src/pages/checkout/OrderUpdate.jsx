@@ -8,8 +8,6 @@ const OrderUpdate = () => {
   } = useLocation();
   return (
     <>
-      <Navbar />
-      <Topbar />
       {paymentId && (
         <main className="grid grid-col-2 ">
           <img
