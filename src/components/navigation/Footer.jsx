@@ -19,40 +19,40 @@ const Footer = () => {
       </div>
 
       <footer
-        className={`wrapper ${styles.footer_container} p-m mx-auto my-l br-m`}
+        className={`wrapper ${styles.footer_container} width-100 px-xl py-m`}
       >
         <section className={`${styles.footer_section}`}>
           <h6 className={`${styles.h6} h6`}>Quick Links</h6>
           <a className="link text-light" href="">
-            <small className="py-xs">About Us</small>
+            <small>About Us</small>
           </a>
           <a className="link text-light" href="">
-            <small className="py-xs">Terms of Service</small>
+            <small>Terms of Service</small>
           </a>
           <a className="link text-light" href="">
-            <small className="py-xs">Privacy Policy</small>
+            <small>Privacy Policy</small>
           </a>
           <a className="link text-light" href="">
-            <small className="py-xs">Return Policy</small>
+            <small>Return Policy</small>
           </a>
           <a className="link text-light" href="">
-            <small className="py-xs">Shipping Details</small>
+            <small>Shipping Details</small>
           </a>
         </section>
 
         <section className={`${styles.footer_section}`}>
           <h6 className={`${styles.h6} h6`}>Stay in touch</h6>
-          <a className="link text-light py-xs" href="https://twitter.com">
+          <a className="link text-light" href="https://twitter.com">
             <small>
               Twitter &nbsp;<i className="fab fa-twitter"></i>
             </small>
           </a>
-          <a className="link text-light py-xs" href="https://instagram.com">
+          <a className="link text-light" href="https://instagram.com">
             <small>
               Instagram &nbsp;<i className="fab fa-instagram"></i>
             </small>
           </a>
-          <a className="link text-light py-xs" href="https://facebook.com">
+          <a className="link text-light" href="https://facebook.com">
             <small>
               Facebook &nbsp;<i className="fab fa-facebook"></i>
             </small>
@@ -61,8 +61,18 @@ const Footer = () => {
 
         <section className={`${styles.footer_section}`}>
           <h6 className={`${styles.h6} h6`}>Contact Us</h6>
-          <small className="py-xs">E-mail: mail@mail.com</small>
-          <small className="py-xs">Whatsapp: +91 8888888888</small>
+          <small>
+            Email:
+            <a className="link text-light" href="mailto:tanay.joshi9@gmail.com">
+              tanay.joshi9@gmail.com
+            </a>
+          </small>
+          <small>
+            Whatsapp:
+            <a className="link text-light" href="tel:+91 8888888888">
+              +91 8888888888
+            </a>
+          </small>
         </section>
       </footer>
     </>
