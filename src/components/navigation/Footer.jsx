@@ -1,3 +1,4 @@
+import { FaCcMastercard, FaCcVisa } from "react-icons/fa";
 import styles from "./Navigation.module.css";
 
 const Footer = () => {
@@ -13,7 +14,8 @@ const Footer = () => {
           &nbsp;&nbsp;More than 20,000 books
         </div>
         <div className={`${styles.info_card} flex-grow-1 br-m`}>
-          <i className="fas fa-credit-card text-s"></i>
+          <FaCcVisa className="text-s" />
+          <FaCcMastercard className="mx-xs text-s" />
           &nbsp;&nbsp;Safe Payment Options
         </div>
       </div>
