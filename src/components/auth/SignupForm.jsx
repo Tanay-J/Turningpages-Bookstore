@@ -1,8 +1,8 @@
 import styles from "./Auth.module.css";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { loginHandler, signUpHandler } from "../../utils/service-requests";
 import { useAuth } from "../../contexts/auth-context";
+import { signUpHandler } from "../../utils/service-requests";
 
 const SignupForm = () => {
   const initialData = {
@@ -12,14 +12,11 @@ const SignupForm = () => {
     password: "",
     confPassword: "",
   };
-  const {
-    state: { isAuthenticated },
-    dispatch,
-  } = useAuth();
-  const [signUpData, setSignUpData] = useState(initialData);
-  const [errorMsg, setErrorMsg] = useState("");
+  const { dispatch } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [signUpData, setSignUpData] = useState(initialData);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const userInputHandler = (e) => {
     const { id, value } = e.target;
@@ -29,9 +26,12 @@ const SignupForm = () => {
   const dataValidation = (e) => {
     e.preventDefault();
     const { firstName, lastName, email, password, confPassword } = signUpData;
+    const reg = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     if (firstName && lastName && email && password) {
-      if (password !== confPassword) {
-        setErrorMsg("Password does not match");
+      if (!reg.test(email)) {
+        setErrorMsg("Invalid Email Address");
+      } else if (password !== confPassword) {
+        setErrorMsg("Passwords do not match");
       } else {
         setErrorMsg("");
         signUpHandler(signUpData, setErrorMsg, dispatch, navigate, location);
@@ -84,6 +84,7 @@ const SignupForm = () => {
               </label>
               <input
                 id="email"
+                type="email"
                 value={signUpData.email}
                 className={`${styles.auth_input} p-xs br-s`}
                 onChange={userInputHandler}
