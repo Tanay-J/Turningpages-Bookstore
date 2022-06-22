@@ -151,16 +151,28 @@ export const removeFromWishlist = async (id, wishlistDispatch) => {
 };
 
 //signup
-export const signUpHandler = async (signUpData, navigate, setErrorMsg) => {
+export const signUpHandler = async (
+  signUpData,
+  setErrorMsg,
+  dispatch,
+  navigate,
+  location
+) => {
   try {
     const response = await axios.post("/api/auth/signup", signUpData);
     if (response.status === 201) {
       setErrorMsg("");
-      navigate("/login");
-      toast.success("Signup successful! Please Login");
+      toast.success("Signup successful!");
+      loginHandler(
+        { email: signUpData.email, password: signUpData.password },
+        dispatch,
+        navigate,
+        location,
+        setErrorMsg,
+      );
     }
   } catch (error) {
-    if (error.response.status === 422) {
+    if (error.response?.status === 422) {
       toast.error("Email already exists, please Login");
       setErrorMsg("Email already exists, please Login");
     } else {
@@ -179,7 +191,7 @@ export const loginHandler = async (
   setErrorMsg,
   event
 ) => {
-  event.preventDefault();
+  event && event.preventDefault();
 
   try {
     let response = await axios.post("/api/auth/login", loginData);

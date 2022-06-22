@@ -1,7 +1,8 @@
 import styles from "./Auth.module.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { signUpHandler } from "../../utils/service-requests";
+import { useLocation, useNavigate } from "react-router-dom";
+import { loginHandler, signUpHandler } from "../../utils/service-requests";
+import { useAuth } from "../../contexts/auth-context";
 
 const SignupForm = () => {
   const initialData = {
@@ -11,9 +12,15 @@ const SignupForm = () => {
     password: "",
     confPassword: "",
   };
+  const {
+    state: { isAuthenticated },
+    dispatch,
+  } = useAuth();
   const [signUpData, setSignUpData] = useState(initialData);
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+
   const userInputHandler = (e) => {
     const { id, value } = e.target;
     setSignUpData({ ...signUpData, [id]: value });
@@ -27,7 +34,7 @@ const SignupForm = () => {
         setErrorMsg("Password does not match");
       } else {
         setErrorMsg("");
-        signUpHandler(signUpData, navigate, setErrorMsg);
+        signUpHandler(signUpData, setErrorMsg, dispatch, navigate, location);
       }
     } else setErrorMsg("All fields are mandatory");
   };
@@ -72,7 +79,7 @@ const SignupForm = () => {
             </div>
             <div className="flex flex-col">
               <label className="my-xs" htmlFor="email">
-                <small>Username</small>
+                <small>Email</small>
                 <span className="text-danger"> *</span>
               </label>
               <input
