@@ -6,8 +6,8 @@ const ProductList = () => {
   const { finalProducts } = getFinalProducts();
 
   return (
-    <main className="mx-auto p-s">
-      <div className={`${styles.prod_list}`}>
+    <main className="mx-m p-s">
+      <div className={`${styles.prod_list} `}>
         {finalProducts.length === 0 ? (
           <h3>No Products</h3>
         ) : (
