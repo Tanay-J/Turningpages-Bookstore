@@ -8,6 +8,7 @@ import {
   removeFromCart,
 } from "../../utils/service-requests";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const CartProducts = () => {
   const {
@@ -16,6 +17,7 @@ const CartProducts = () => {
   } = useCart();
   const { wishlistDispatch } = useWishlist();
   const { totalQty } = getBillingDetails();
+  const [isUpdating, setIsUpdating] = useState(false);
 
   return (
     <main className="flex flex-col gap-2 mx-auto">
@@ -50,16 +52,31 @@ const CartProducts = () => {
               </div>
               <div className="my-xs">
                 <button
-                  disabled={item.qty == 1 ? true : false}
+                  disabled={item.qty == 1 || isUpdating ? true : false}
                   className={`${styles.minus}`}
-                  onClick={() => changeQty(item._id, "decrement", cartDispatch)}
+                  onClick={() =>
+                    changeQty(
+                      item._id,
+                      "decrement",
+                      cartDispatch,
+                      setIsUpdating
+                    )
+                  }
                 >
                   <i className="fas fa-minus text-xxs px-xs"></i>
                 </button>
                 <span className={`${styles.qty} p-xs`}>{item.qty}</span>
                 <button
+                  disabled={isUpdating}
                   className={`${styles.plus}`}
-                  onClick={() => changeQty(item._id, "increment", cartDispatch)}
+                  onClick={() =>
+                    changeQty(
+                      item._id,
+                      "increment",
+                      cartDispatch,
+                      setIsUpdating
+                    )
+                  }
                 >
                   <i className="fas fa-plus text-xxs px-xs"></i>
                 </button>

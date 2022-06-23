@@ -47,8 +47,14 @@ export const addToCart = async (
   }
 };
 
-export const changeQty = async (id, actionType, cartDispatch) => {
+export const changeQty = async (
+  id,
+  actionType,
+  cartDispatch,
+  setIsUpdating
+) => {
   try {
+    setIsUpdating(true);
     const { token } = getLocalStorageData();
     const response = await axios.post(
       `/api/user/cart/${id}`,
@@ -59,6 +65,7 @@ export const changeQty = async (id, actionType, cartDispatch) => {
     );
     if (response.status === 200) {
       cartDispatch({ type: "CHANGE_QTY", payload: response.data.cart });
+      setIsUpdating(false);
     }
   } catch (error) {
     toast.error("Unable to update quantity, try again!");
@@ -168,7 +175,7 @@ export const signUpHandler = async (
         dispatch,
         navigate,
         location,
-        setErrorMsg,
+        setErrorMsg
       );
     }
   } catch (error) {
