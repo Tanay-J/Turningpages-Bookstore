@@ -41,7 +41,10 @@ const CartWishlistButtons = ({ product }) => {
   return (
     <>
       {cartItems.find((item) => item._id === _id) ? (
-        <button className="btn btn-primary text-xs flex-grow-1" disabled={!inStock}>
+        <button
+          className="btn btn-primary text-xs flex-grow-1"
+          disabled={!inStock}
+        >
           <Link to="/cart" className="link link-white">
             Go to Cart
           </Link>
@@ -67,6 +70,7 @@ const CartWishlistButtons = ({ product }) => {
                     title,
                   },
                   cartDispatch,
+                  wishlistItems,
                   wishlistDispatch
                 )
               : navigate("/login");
@@ -105,6 +109,7 @@ const CartWishlistButtons = ({ product }) => {
                     title,
                   },
                   wishlistDispatch,
+                  cartItems,
                   cartDispatch
                 )
               : navigate("/login");
