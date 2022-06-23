@@ -25,10 +25,12 @@ const Navbar = () => {
 
   return (
     <header className={`${styles.nav_header} nav-bg-transparent px-xl py-xs`}>
-      <img
-        className={`${styles.brand_logo}`}
-        src={process.env.PUBLIC_URL + "/assets/Turning Pages-1.png"}
-      />
+      <Link to="/">
+        <img
+          className={`${styles.brand_logo}`}
+          src={process.env.PUBLIC_URL + "/assets/Turning Pages-1.png"}
+        />
+      </Link>
       <ul className={`${styles.nav_links} my-l`}>
         {isAuthenticated && (
           <li className="px-s">

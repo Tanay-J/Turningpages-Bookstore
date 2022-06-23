@@ -37,10 +37,12 @@ const MobileNavbar = () => {
       <header
         className={`${styles.mobile_nav_header} nav-bg-transparent px-xl py-xs`}
       >
-        <img
-          className={`${styles.brand_logo}`}
-          src={process.env.PUBLIC_URL + "/assets/Turning Pages-1.png"}
-        />
+        <Link to="/">
+          <img
+            className={`${styles.brand_logo}`}
+            src={process.env.PUBLIC_URL + "/assets/Turning Pages-1.png"}
+          />
+        </Link>
         <i
           className={`fas fa-bars ${styles.nav_icons} ${styles.hamburger} text-s`}
           onClick={() => setShow(!show)}
